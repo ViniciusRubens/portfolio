@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinicius Rubens | R&D Engineer - Software Engineer - ML Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* --- VARIÁVEIS (TEMA ESCURO - GUNMETAL/NAVY) --- */
+        :root {
+            --bg-primary: #0f172a;
+            /* Slate 900 */
+            --bg-secondary: #1e293b;
+            /* Slate 800 */
+            --text-main: #f1f5f9;
+            /* Slate 100 */
+            --text-muted: #94a3b8;
+            /* Slate 400 */
+            --accent: #38bdf8;
+            /* Sky 400 - Destaque */
+            --accent-hover: #0ea5e9;
+            /* Sky 500 */
+            --border: #334155;
+            /* Slate 700 */
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Fira Code', monospace;
+            color: var(--text-main);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent);
+            transition: 0.3s;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.98);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Ajustei gap para caber mais itens */
+        .nav-links a {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* IDIOMAS */
+        .lang-switch {
+            display: flex;
+            gap: 10px;
+            border-left: 1px solid var(--border);
+            padding-left: 20px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.3s;
+            filter: grayscale(100%);
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        /* --- HERO --- */
+        #home {
+            padding-top: 160px;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-intro {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            max-width: 700px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* STACK */
+        .stack-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tech-tag {
+            background-color: var(--bg-secondary);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            border: 1px solid var(--border);
+        }
+
+        /* --- COMPONENTES GERAIS --- */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        /* TIMELINE / JOB / PUB ITEM */
+        .timeline-item,
+        .job-item,
+        .pub-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            box-shadow: var(--card-shadow);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .item-org {
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .item-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            margin-top: 15px;
+            color: var(--text-muted);
+        }
+
+        /* CERTIFICADOS */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cert-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .cert-link {
+            font-size: 0.85rem;
+            margin-top: 15px;
+            display: inline-block;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* PROJETOS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+            border: 1px solid var(--border);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #334155;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        /* PUBLICAÇÕES ESPECÍFICO */
+        .pub-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pub-item:hover {
+            transform: translateX(5px);
+            transition: 0.3s;
+        }
+
+        .pub-link-btn {
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 0.9rem;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid var(--border);
+            padding: 5px 15px;
+            border-radius: 4px;
+        }
+
+        .pub-link-btn:hover {
+            border-color: var(--accent);
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .lang-switch {
+                padding-left: 0;
+                border: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .item-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">&lt;ViniciusRubens /&gt;</div>
+                <div class="nav-container">
+                    <ul class="nav-links">
+                        <li><a href="#home" id="nav-home">Home</a></li>
+                        <li><a href="#educacao" id="nav-edu">Educação</a></li>
+                        <li><a href="#experiencia" id="nav-exp">Experiência</a></li>
+                        <li><a href="#projetos" id="nav-proj">Projetos</a></li>
+                        <li><a href="#publicacoes" id="nav-pub">Publicações</a></li>
+                    </ul>
+                    <div class="lang-switch">
+                        <button class="lang-btn active" id="btn-pt" onclick="setLanguage('pt')"
+                            title="Português">🇧🇷</button>
+                        <button class="lang-btn" id="btn-en" onclick="setLanguage('en')" title="English">🇺🇸</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container">
+            <p class="hero-intro" id="hero-intro"></p>
+            <h1 class="hero-title" id="user-name"></h1>
+            <h2 class="hero-subtitle" id="user-role"></h2>
+            <p class="hero-desc" id="user-bio"></p>
+
+            <div style="margin-bottom: 30px;">
+                <small style="color: var(--text-muted); font-family: 'Fira Code';" id="label-stack">Tech Stack:</small>
+                <div class="stack-container" id="tech-stack"></div>
+            </div>
+
+            <div id="social-links"></div>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <div class="container">
+            <h3 class="section-title" id="title-exp">Experiência Profissional</h3>
+            <div id="job-list"></div>
+        </div>
+    </section>
+
+    <section id="educacao">
+        <div class="container">
+            <h3 class="section-title" id="title-edu">Educação & Pesquisa</h3>
+
+            <h4 style="margin-bottom: 20px; color: var(--accent);" id="subtitle-academic">Acadêmico</h4>
+            <div id="academic-list"></div>
+
+            <h4 style="margin: 50px 0 20px 0; color: var(--accent);" id="subtitle-certs">Certificações</h4>
+            <div class="cert-grid" id="cert-list"></div>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <div class="container">
+            <h3 class="section-title" id="title-proj">Projetos Pessoais</h3>
+            <div class="projects-grid" id="project-list"></div>
+        </div>
+    </section>
+
+    <section id="publicacoes">
+        <div class="container">
+            <h3 class="section-title" id="title-pub">Publicações</h3>
+            <div class="pub-grid" id="pub-list">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Vinicius Rubens - Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // 1. BANCO DE DADOS
+        // ============================================================
+        const db = {
+            // --- VERSÃO EM PORTUGUÊS ---
+            pt: {
+                nav: ["Home", "Educação", "Experiência", "Projetos", "Publicações"],
+                labels: {
+                    intro: "Olá, meu nome é",
+                    stack: "Principais Tecnologias:",
+                    eduTitle: "Educação & Pesquisa",
+                    academic: "Formação Acadêmica",
+                    certs: "Certificações",
+                    expTitle: "Experiência Profissional",
+                    projTitle: "Projetos Pessoais",
+                    pubTitle: "Publicações & Artigos",
+                    viewLink: "Ver Certificado",
+                    readArticle: "Ler Publicação"
+                },
+                info: {
+                    name: "Vinicius Rubens França de Oliveira",
+                    role: "Engenheiro de P&D | Engenheiro de Software | Engenheiro de Machine Learning",
+                    bio: "Engenheiro impulsionado pela inovação, graduado em Engenharia Elétrica pela UNESP em primeiro lugar na minha turma com um Prêmio de Mérito da CREA-SP. Com mais de 8 anos de experiência em desenvolvimento de software, atualmente atuo na criação de sistemas autônomos para máquinas agrícolas autônomas no Grupo Jacto. Foco em código escalável, performance e robustez.",
+                    stack: ["GIT", "Python", "C++", "Machine Learning", "Data Science", "AWS Cloud", "ROS/ROS2", "Docker", "CI/CD", "Linux Shell", "J1939/CAN", "Data Structures", "Terraform", "PostgreSQL", "HTML", "CSS"]
+                },
+                education: [
+                    {
+                        degree: "Bacharelado em Engenharia Elétrica",
+                        school: "UNESP",
+                        period: "Conclusão: 2024",
+                        desc: "Graduado como 1º da turma. Prêmio de Mérito do CREA-SP e do Instituto de Engenharia."
+                    },
+                    {
+                        degree: "Pesquisador Bolsista (State of the Art - Machine Learning)",
+                        school: "Projetos Acadêmicos",
+                        period: "Mar 2020 - Nov 2024",
+                        desc: "Desenvolvimento de software Vision Transformers (ViT) usando Transfer Learning com pré-treinamento no banco de dados ImageNet. Resultados de 85-90% de acurácia na classificação de 5 diferentes ervas daninhas brasileiras."
+                    }
+                ],
+                certifications: [
+                    { name: "Machine Learning Engineer Specialization", org: "Data Science Academy", status: "Em progresso (2025)", link: "#" },
+                    { name: "Software Engineering for Machine Learning", org: "Data Science Academy", status: "2025", link: "https://mycourse.app/XNKHUW3uiQg7HPDu3" },
+                    { name: "AWS Certified Cloud Practitioner", org: "Amazon AWS", status: "Em progresso (2025)", link: "#" },
+                    { name: "AWS Certified AI Practitioner", org: "Amazon AWS", status: "Em progresso (2025)", link: "#" },
+                    { name: "Lean Six Sigma White and Yellow Belt", org: "FM2S Education", status: "2023", link: "https://www.fm2s.com.br/certificados/300976" },
+                    { name: "Building and Managing Resilient Teams", org: "University of Chicago", status: "2022", link: "https://www.credential.net/8d2bdc08-9895-44a8-8a50-cbd9a5cdd4cd#acc.8qBxNWwP" },
+                    { name: "Data Science", org: "VAI Academy - Visagio", status: "2021", link: "https://www.visagio.com/vaiacademy/certificado/8633251681" },
+                    { name: "Deep Learning Specialization - Sequence Models", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/2F7GESQYETKX" },
+                    { name: "Deep Learning Specialization - Convolutional Neural Network", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/USKUPXGVY7TZ" },
+                    { name: "Deep Learning Specialization - Improving Deep Neural Networks", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/RKR3CBNFQKEP" },
+                    { name: "Deep Learning Specialization - Neural Networks and Deep Learning", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/57WC5UV6S4LM" },
+                    { name: "Deep Learning Specialization - Structuring Machine Learning Projects", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/PHKNUEVDLJT6" }
+                ],
+                experience: [
+                    {
+                        role: "Engenheiro de Pesquisa e Desenvolvimento",
+                        company: "Grupo Jacto | Máquinas Autônomas",
+                        period: "Jan 2024 - Atualmente",
+                        desc: "Desenvolvimento de software em ROS1 e ROS2 para controle, sensoriamento e atuação de frota de 10 máquinas agrícolas autônomas. Criação de sistema de calibração de sensores end-to-end (Gazebo) e predição de falhas hidráulicas via regressão polinomial reduzindo a taxa de colisão em 90%. Implementação de pipeline CI/CD no Bitbucket (C++, Google Test) automatizando testes unitários e de integração, alcançando 96% de cobertura de código. Liderança no desenvolvimento de sistema de georreferenciamento por satélite (antena dupla). Desenvolvimento de firmware para atualização remota e máquina de estados para transmissão elétrica (protocolo CAN)."
+                    },
+                    {
+                        role: "Engenheiro de Software",
+                        company: "QI Tech | DTVM",
+                        period: "Dez 2022 - Out 2023",
+                        desc: "Desenvolvimento de API REST para carteira de ativos usando Flask. Implementação de IaC com Terraform e Docker na AWS. Metodologia TDD. A API foi lançada com BRL 200 milhões de ativos sob custódia."
+                    },
+                    {
+                        role: "Business Intelligence Intern",
+                        company: "ForeverLiss",
+                        period: "Set 2021 - Out 2021",
+                        desc: "Migração de análises MySQL para PostgreSQL. Criação de dashboards estratégicos e otimização de queries SQL."
+                    }
+                ],
+                projects: [
+                    {
+                        title: "Interface web para prever salários da área de TI",
+                        tech: ["Python", "HTML", "CSS", "ML"],
+                        desc: "Este projeto fornece uma aplicação web integrada com um modelo de machine learning que prevê o salário base baseado em quatro parâmetros: país, nível educacional, área e anos de experiência.",
+                        link: "https://github.com/ViniciusRubens/Web-interface-to-predict-IT-salaries",
+                        img: "assets/img/web_interface.png"
+                    },
+                    {
+                        title: "Rest API para prever o valor do Bitcoin",
+                        tech: ["Python", "Fast API, ML"],
+                        desc: "Este projeto envolve a criação de uma API (Interface de Programação de Aplicativos) desenvolvida usando a estrutura FastAPI, que permite que usuários e investidores acessem previsões atualizadas sobre o preço do Bitcoin.",
+                        link: "https://github.com/ViniciusRubens/Rest_API_to_predict_Bitcoin_price",
+                        img: "assets/img/bitcoin_pred.jpg"
+                    },
+                    {
+                        title: "Rest API para prever o tipo de um produto para o setor de logística",
+                        tech: ["Python", "Flask, API, ML"],
+                        desc: "Este projeto envolve a criação de uma API (Interface de Programação de Aplicativos) desenvolvida usando a estrutura Flask, que permite que os usuários, do setor de logística, utilizando o peso e o tamanho da embalagem, possam prever qual o possível produto dentro do pacote.",
+                        link: "https://github.com/ViniciusRubens/Rest_API_to_predict_a_product_type",
+                        img: "assets/img/logistic_pred.jpg"
+                    }
+                ],
+                // LISTA DE PUBLICAÇÕES (PT)
+                publications: [
+                    {
+                        title: "CLASSIFICAÇÃO DE VEGETAÇÃO POR MEIO DE REDES NEURAIS PROFUNDAS PARA AGRICULTURA",
+                        venue: "Iniciação Científica / UNESP",
+                        date: "20/01/2023",
+                        link: "https://www.even3.com.br/anais/xxxivcicunesp/606266-classificacao-de-vegetacao-por-meio-de-redes-neurais-profundas-para-agricultura/",
+                        desc: "Desenvolvimento um algoritmo de Rede Neural Profunda para a classificação multiclasse de um banco de dados de imagens, com aplicação na agricultura."
+                    },
+                    {
+                        title: "APLICAÇÃO DE APRENDIZADO DE MÁQUINA PARA A DETECÇÃO DE ERVAS DANINHAS EM PLANTAÇÕES AGRÍCOLAS",
+                        venue: "Iniciação Científica / UNESP",
+                        date: "30/11/2023",
+                        link: "https://eventos.reitoria.unesp.br/anais/xxxvcicunesp/771861-aplicacao-de-aprendizado-de-maquina-para-a-deteccao-de-ervas-daninhas-em-plantacoes-agricolas/",
+                        desc: "Desenvolvimento um algoritmo de Vision Transformer com aplicação na agricultura utilizando web-scraping para criação de banco de dados."
+                    }
+                    // Adicione mais publicações aqui
+                ]
+            },
+
+            // --- VERSÃO EM INGLÊS ---
+            en: {
+                nav: ["Home", "Education", "Experience", "Projects", "Publications"],
+                labels: {
+                    intro: "Hi, my name is",
+                    stack: "Stack:",
+                    eduTitle: "Education & Research",
+                    academic: "Academic Background",
+                    certs: "Certifications",
+                    expTitle: "Work Experience",
+                    projTitle: "Personal Projects",
+                    pubTitle: "Publications & Papers",
+                    viewLink: "View Credential",
+                    readArticle: "Read Paper"
+                },
+                info: {
+                    name: "Vinicius Rubens França de Oliveira",
+                    role: "R&D Engineer | Software Engineer | Machine Learning Engineer",
+                    bio: "Driven by innovation, I have a B.Eng. in Electrical Engineering from UNESP graduating first in my class. With 8+ years in software development, I currently work as an R&D Engineer at Grupo Jacto, developing autonomous systems. Focus on scalable code, performance, and robustness.",
+                    stack: ["GIT", "Python", "C++", "Machine Learning", "Data Science", "AWS Cloud", "ROS/ROS2", "Docker", "CI/CD", "Linux Shell", "J1939/CAN", "Data Structures", "Terraform", "PostgreSQL", "HTML", "CSS"]
+                },
+                education: [
+                    {
+                        degree: "B.Eng. in Electrical Engineering",
+                        school: "UNESP",
+                        period: "Class of 2024",
+                        desc: "Graduated 1st in class. Award of Merit from CREA-SP."
+                    },
+                    {
+                        degree: "Scholarship Researcher (State of the art - Machine Learning)",
+                        school: "Academic Research",
+                        period: "Mar 2020 - Nov 2024",
+                        desc: "Developed a Vision Transformers (ViT) using the Transfer Learning technique with pre-training on the ImageNet database. The results showed an average accuracy rate of 85% - 90% in classifying 5 types of weed species in Brazil."
+                    }
+                ],
+                certifications: [
+                    { name: "Machine Learning Engineer Specialization", org: "Data Science Academy", status: "In Progress (2025)", link: "#" },
+                    { name: "Software Engineering for Machine Learning", org: "Data Science Academy", status: "2025", link: "https://mycourse.app/XNKHUW3uiQg7HPDu3" },
+                    { name: "AWS Certified Cloud Practitioner", org: "Amazon AWS", status: "In Progress (2025)", link: "#" },
+                    { name: "AWS Certified AI Practitioner", org: "Amazon AWS", status: "Em progresso (2025)", link: "#" },
+                    { name: "Lean Six Sigma White and Yellow Belt", org: "FM2S Education", status: "2023", link: "https://www.fm2s.com.br/certificados/300976" },
+                    { name: "Building and Managing Resilient Teams", org: "University of Chicago", status: "2022", link: "https://www.credential.net/8d2bdc08-9895-44a8-8a50-cbd9a5cdd4cd#acc.8qBxNWwP" },
+                    { name: "Data Science", org: "VAI Academy - Visagio", status: "2021", link: "https://www.visagio.com/vaiacademy/certificado/8633251681" },
+                    { name: "Deep Learning Specialization - Sequence Models", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/2F7GESQYETKX" },
+                    { name: "Deep Learning Specialization - Convolutional Neural Network", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/USKUPXGVY7TZ" },
+                    { name: "Deep Learning Specialization - Improving Deep Neural Networks", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/RKR3CBNFQKEP" },
+                    { name: "Deep Learning Specialization - Neural Networks and Deep Learning", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/57WC5UV6S4LM" },
+                    { name: "Deep Learning Specialization - Structuring Machine Learning Projects", org: "DeepLearning.AI", status: "2020", link: "https://www.coursera.org/account/accomplishments/verify/PHKNUEVDLJT6" }
+                ],
+                experience: [
+                    {
+                        role: "Research & Development Engineer",
+                        company: "Grupo Jacto | Autonomous Machines",
+                        period: "Jan 2024 - Present",
+                        desc: "Developed software in ROS1 and ROS2 for control, sensing, and actuation of a fleet of 10 autonomous machines. Led the creation of end-to-end sensor calibration (Gazebo) and hydraulic failure prediction systems. Implemented CI/CD pipeline on Bitbucket (C++, Google Test) achieving 96% code coverage and ensuring codebase stability. Led development of dual-antenna satellite georeferencing system. Designed remote firmware update software and developed state machine for electric transmission (CAN protocol)."
+                    },
+                    {
+                        role: "Software Engineer",
+                        company: "QI Tech | DTVM",
+                        period: "Dec 2022 - Oct 2023",
+                        desc: "Led development of asset portfolio REST API (Flask). Implemented IaC with Terraform/Docker on AWS. Used TDD. API launched with BRL 200 million in assets."
+                    },
+                    {
+                        role: "Business Intelligence Intern",
+                        company: "ForeverLiss",
+                        period: "Sep 2021 - Oct 2021",
+                        desc: "Contributed to MySQL to PostgreSQL migration. Developed dashboards and optimized SQL queries for data visualization."
+                    }
+                ],
+                projects: [
+                    {
+                        title: "Web interface to predict IT salaries",
+                        tech: ["Python", "HTML", "CSS", "ML"],
+                        desc: "This project provides a web application integrated with a Machine Learning model that can predict developer salaries based on four key characteristics: country, education level, role and years of experience",
+                        link: "https://github.com/ViniciusRubens/Web-interface-to-predict-IT-salaries",
+                        img: "assets/img/web_interface.png"
+                    },
+                    {
+                        title: "Rest API to predict Bitcoin price",
+                        tech: ["Python", "Fast API"],
+                        desc: "This project involves the creation of an API (Application Programming Interface) developed using the FastAPI framework, which allows users and investors to access up-to-date forecasts on the price of Bitcoin. ",
+                        link: "https://github.com/ViniciusRubens/Rest_API_to_predict_Bitcoin_price",
+                        img: "assets/img/bitcoin_pred.jpg"
+                    },
+                    {
+                        title: "REST API for Product Prediction in Logistics",
+                        tech: ["Python", "Flask, API, ML"],
+                        desc: "This project involves creating an API developed using the Flask framework, allowing users in the logistics sector to predict the likely product inside a package based on its weight and size.",
+                        link: "https://github.com/ViniciusRubens/Rest_API_to_predict_a_product_type",
+                        img: "assets/img/logistic_pred.jpg"
+                    },
+                ],
+                // LISTA DE PUBLICAÇÕES (EN)
+                publications: [
+                    {
+                        title: "VEGETATION CLASSIFICATION USING DEEP NEURAL NETWORKS FOR AGRICULTURE",
+                        venue: "Undergraduate Research / UNESP",
+                        date: "01/20/2023",
+                        link: "https://www.even3.com.br/anais/xxxivcicunesp/606266-classificacao-de-vegetacao-por-meio-de-redes-neurais-profundas-para-agricultura/",
+                        desc: "Development of a Deep Neural Network algorithm for multiclass classification of an image dataset, applied to agriculture."
+                    },
+                    {
+                        title: "APPLICATION OF MACHINE LEARNING FOR WEED DETECTION IN AGRICULTURAL CROPS",
+                        venue: "Undergraduate Research / UNESP",
+                        date: "11/30/2023",
+                        link: "https://eventos.reitoria.unesp.br/anais/xxxvcicunesp/771861-aplicacao-de-aprendizado-de-maquina-para-a-deteccao-de-ervas-daninhas-em-plantacoes-agricolas/",
+                        desc: "Development of a Vision Transformer algorithm applied to agriculture, using web scraping for dataset creation."
+                    }
+                ]
+            }
+        };
+
+        // ============================================================
+        // 2. ENGINE LÓGICA
+        // ============================================================
+
+        function setLanguage(lang) {
+            const content = db[lang];
+
+            // BOTOES
+            document.getElementById('btn-pt').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById(`btn-${lang}`).classList.add('active');
+
+            // NAV
+            document.getElementById('nav-home').innerText = content.nav[0];
+            document.getElementById('nav-edu').innerText = content.nav[1];
+            document.getElementById('nav-exp').innerText = content.nav[2];
+            document.getElementById('nav-proj').innerText = content.nav[3];
+            document.getElementById('nav-pub').innerText = content.nav[4];
+
+            // HERO
+            document.getElementById('hero-intro').innerText = content.labels.intro;
+            document.getElementById('user-name').innerText = content.info.name;
+            document.getElementById('user-role').innerText = content.info.role;
+            document.getElementById('user-bio').innerText = content.info.bio;
+            document.getElementById('label-stack').innerText = content.labels.stack;
+
+            // STACK
+            const stackContainer = document.getElementById('tech-stack');
+            stackContainer.innerHTML = '';
+            content.info.stack.forEach(tech => {
+                stackContainer.innerHTML += `<span class="tech-tag">${tech}</span>`;
+            });
+
+            // LINKS SOCIAIS
+            const socialContainer = document.getElementById('social-links');
+            socialContainer.innerHTML = `
+                <a href="https://www.linkedin.com/in/vinicius-rubens/" target="_blank" style="margin-right: 20px; border: 1px solid var(--accent); padding: 10px 20px; border-radius: 4px;">LinkedIn</a>
+                <a href="mailto:viniciusrubensoliveira@gmail.com" style="margin-right: 20px; border: 1px solid var(--accent); padding: 10px 20px; border-radius: 4px;">Email</a>
+                <a href="https://github.com/ViniciusRubens" target="_blank" style="border: 1px solid var(--accent); padding: 10px 20px; border-radius: 4px;">GitHub</a>
+            `;
+
+            // EDUCAÇÃO
+            document.getElementById('title-edu').innerText = content.labels.eduTitle;
+            document.getElementById('subtitle-academic').innerText = content.labels.academic;
+            document.getElementById('subtitle-certs').innerText = content.labels.certs;
+
+            // Academic List
+            const academicList = document.getElementById('academic-list');
+            academicList.innerHTML = '';
+            content.education.forEach(item => {
+                academicList.innerHTML += `
+                    <div class="timeline-item">
+                        <div class="item-header">
+                            <span class="item-title">${item.degree}</span>
+                            <span class="item-org">${item.school}</span>
+                        </div>
+                        <div class="item-date">${item.period}</div>
+                        <p class="item-desc">${item.desc}</p>
+                    </div>
+                `;
+            });
+
+            // Certifications
+            const certList = document.getElementById('cert-list');
+            certList.innerHTML = '';
+            content.certifications.forEach(cert => {
+                certList.innerHTML += `
+                    <div class="cert-card">
+                        <div>
+                            <h5 style="color: var(--text-main); margin-bottom: 5px; font-size: 1.05rem;">${cert.name}</h5>
+                            <small style="color: var(--text-muted); display:block; margin-bottom:5px;">${cert.org}</small>
+                            <span style="color: var(--accent); font-size: 0.8rem; border: 1px solid var(--border); padding: 2px 6px; border-radius: 4px;">${cert.status}</span>
+                        </div>
+                        <a href="${cert.link}" class="cert-link" target="_blank">${content.labels.viewLink} &rarr;</a>
+                    </div>
+                `;
+            });
+
+            // EXPERIENCIA
+            document.getElementById('title-exp').innerText = content.labels.expTitle;
+            const jobList = document.getElementById('job-list');
+            jobList.innerHTML = '';
+            content.experience.forEach(job => {
+                jobList.innerHTML += `
+                    <div class="job-item">
+                        <div class="item-header">
+                            <span class="item-title">${job.role}</span>
+                            <span class="item-org">${job.company}</span>
+                        </div>
+                        <div class="item-date">${job.period}</div>
+                        <div class="item-desc">${job.desc}</div>
+                    </div>
+                `;
+            });
+
+            // PROJETOS
+            document.getElementById('title-proj').innerText = content.labels.projTitle;
+            const projectList = document.getElementById('project-list');
+            projectList.innerHTML = '';
+
+            content.projects.forEach(proj => {
+                const tagsHtml = proj.tech.map(t => `<span style="font-size:0.75rem; margin-right:5px; color:var(--accent);">#${t}</span>`).join('');
+
+                // LÓGICA: Se tiver imagem, usa <img>. Se não, usa um ícone de código </>.
+                const imageContent = proj.img
+                    ? `<img src="${proj.img}" alt="${proj.title}" style="width:100%; height:100%; object-fit:cover;">`
+                    : `<span style="font-size: 3rem; opacity: 0.3;">&lt;/&gt;</span>`;
+
+                projectList.innerHTML += `
+                    <div class="project-card">
+                        <div class="project-img-placeholder">
+                            ${imageContent}
+                        </div>
+                        <div class="project-content">
+                            <div class="project-title">${proj.title}</div>
+                            <div style="margin-bottom:10px;">${tagsHtml}</div>
+                            <p class="project-desc">${proj.desc}</p>
+                            <a href="${proj.link}" target="_blank" style="font-family: 'Fira Code', monospace; font-size: 0.9rem;">Ver Repo &rarr;</a>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // PUBLICAÇÕES (RENDER)
+            document.getElementById('title-pub').innerText = content.labels.pubTitle;
+            const pubList = document.getElementById('pub-list');
+            pubList.innerHTML = '';
+            content.publications.forEach(pub => {
+                pubList.innerHTML += `
+                    <div class="pub-item">
+                        <div class="item-header">
+                            <span class="item-title">${pub.title}</span>
+                            <span class="item-org">${pub.venue}</span>
+                        </div>
+                        <div class="item-date">${pub.date}</div>
+                        <div class="item-desc">${pub.desc}</div>
+                        <div style="margin-top:10px;">
+                            <a href="${pub.link}" target="_blank" class="pub-link-btn">${content.labels.readArticle} &rarr;</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Inicializa em Português por padrão
+        setLanguage('pt');
+
+    </script>
+</body>
+
+</html>
