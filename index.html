@@ -252,6 +252,18 @@
             color: var(--text-muted);
         }
 
+        .item-link {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dashed transparent;
+            transition: all 0.3s ease;
+        }
+
+        .item-link:hover {
+            border-bottom: 1px dashed #D3AF37;
+            opacity: 0.8;
+        }
+
         /* CERTIFICADOS */
         .cert-grid {
             display: grid;
@@ -520,6 +532,7 @@
                     {
                         role: "Engenheiro de Pesquisa e Desenvolvimento",
                         company: "Grupo Jacto | Máquinas Autônomas",
+                        website: "https://jacto.com/brasil/products/pulverizador-autonomo/arbus-4000-jav",
                         period: "Jan 2024 - Atualmente",
                         desc: `
                             <ul style="margin-top: 10px; padding-left: 20px;">
@@ -538,6 +551,7 @@
                     {
                         role: "Engenheiro de Software",
                         company: "QI Tech | DTVM",
+                        website: "https://qitech.com.br",
                         period: "Dez 2022 - Out 2023",
                         desc: `
                             <ul style="margin-top: 10px; padding-left: 20px;">
@@ -553,6 +567,7 @@
                     {
                         role: "Business Intelligence Intern",
                         company: "ForeverLiss",
+                        website: "https://www.foreverliss.com.br/pagina/quem-somos",
                         period: "Set 2021 - Out 2021",
                         desc: "Migração de análises MySQL para PostgreSQL. Criação de dashboards estratégicos e otimização de queries SQL."
                     }
@@ -660,6 +675,7 @@
                     {
                         role: "Research & Development Engineer",
                         company: "Grupo Jacto | Autonomous Machines",
+                        website: "https://jacto.com/brasil/products/pulverizador-autonomo/arbus-4000-jav",
                         period: "Jan 2024 - Present",
                         desc: `
                             <ul style="margin-top: 10px; padding-left: 20px;">
@@ -678,6 +694,7 @@
                     {
                         role: "Software Engineer",
                         company: "QI Tech | DTVM",
+                        website: "https://qitech.com.br",
                         period: "Dec 2022 - Oct 2023",
                         desc: `
                             <ul style="margin-top: 10px; padding-left: 20px;">
@@ -693,6 +710,7 @@
                     {
                         role: "Business Intelligence Intern",
                         company: "ForeverLiss",
+                        website: "https://www.foreverliss.com.br/pagina/quem-somos",
                         period: "Sep 2021 - Oct 2021",
                         desc: "Contributed to MySQL to PostgreSQL migration. Developed dashboards and optimized SQL queries for data visualization."
                     }
@@ -830,11 +848,16 @@
             const jobList = document.getElementById('job-list');
             jobList.innerHTML = '';
             content.experience.forEach(job => {
+
+                const companyDisplay = job.website
+                    ? `<a href="${job.website}" target="_blank" rel="noopener noreferrer" class="item-link">${job.company}</a>`
+                    : job.company;
+
                 jobList.innerHTML += `
                     <div class="job-item">
                         <div class="item-header">
                             <span class="item-title">${job.role}</span>
-                            <span class="item-org">${job.company}</span>
+                            <span class="item-org">${companyDisplay}</span>
                         </div>
                         <div class="item-date">${job.period}</div>
                         <div class="item-desc">${job.desc}</div>
